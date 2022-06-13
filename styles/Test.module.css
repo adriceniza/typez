@@ -1,0 +1,231 @@
+.game {
+    min-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(58, 58, 58, 0.501);
+    user-select: none;
+}
+
+.testContainer {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.words_container {
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.last_words {
+    position: absolute;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0.2;
+    margin-top: -15vh;
+    transform: scale(0.9);
+    transition: all 0.3s ease-in-out;
+}
+
+.next_words {
+    position: absolute;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0.8;
+    margin-top: 15vh;
+    transform: scale(0.8);
+    transition: all 0.5s ease-in-out;
+}
+
+.word_container {
+    margin-left: 10px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    width: min-content
+}
+
+.letter {
+    color: var(--typez_green)
+}
+
+.letterSuccess {
+    color: rgba(127, 255, 165, 0.788);
+    text-shadow: 0 0 10px rgba(127, 255, 165, 0.416);
+}
+
+.letterMissed {
+    color: rgba(251, 255, 127, 0.788);
+}
+
+.letterMistake {
+    color: rgba(255, 127, 127, 0.788);
+}
+
+.currentWord {
+    color: rgba(127, 255, 165, 0.416);
+}
+
+.cursor {
+    position: absolute;
+    height: 5px;
+    margin-left: 5px;
+    color: rgb(153, 54, 193);
+    background-color: rgb(153, 54, 193);
+    border-radius: 10px;
+    animation: blink 1s infinite;
+    box-shadow: 0 0 5px rgb(153, 54, 193);
+    z-index: 20;
+    transition: all 0.5s ease-in-out;
+}
+
+.stats {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats>* {
+    margin: 5em;
+}
+
+.wpm_counter {
+    color: rgba(127, 255, 165, 0.416);
+    transform: scale(3);
+    z-index: 20;
+}
+
+.precision_container {
+    color: rgba(127, 255, 165, 0.416);
+    transform: scale(3);
+    z-index: 20;
+}
+
+.restart {
+    position: absolute;
+    top: 55%;
+    transform: scale(1.5);
+    color: rgb(132, 182, 132);
+}
+
+.restart>key {
+    transform: scale(1.6);
+    margin-right: 15px;
+}
+
+.goBack {
+    position: absolute;
+    bottom: 50px;
+    color: rgba(240, 248, 255, 0.147);
+}
+
+.goBack>a {
+    text-decoration: none;
+    color: rgba(154, 42, 179, 0.497);
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(192, 61, 225, 0.341);
+}
+
+.settings_container {
+    position: absolute;
+    bottom: 20px;
+    color: rgba(240, 248, 255, 0.147);
+}
+
+.keystrokes_container {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: scale(1.7);
+    color: rgba(240, 248, 255, 0.147);
+}
+
+.terminal_test {
+    background-color: rgb(33, 33, 33);
+    width: 100%;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.countdown {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    color: rgba(192, 192, 192, 0.125);
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.shake {
+    animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: scale(1.05) translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: scale(1.05) translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: scale(1.05) translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: scale(1.05) translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: scale(1.05) translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: scale(1.05) translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: scale(1.05) translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: scale(1.05) translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: scale(1.05) translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: scale(1.05) translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: scale(1.05) translate(1px, -2px) rotate(-1deg);
+    }
+}

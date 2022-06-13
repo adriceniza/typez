@@ -1,0 +1,254 @@
+.TypezLoader {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: var(--bg)
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.screen {
+    width: 82vh;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(22, 22, 22);
+    margin-bottom: 25px;
+    border-radius: 8px;
+    position: relative;
+    padding: 4px;
+}
+
+.screen::after {
+    content: "";
+    display: block;
+    position: absolute;
+    color: rgba(77, 154, 123, 0.603);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(22, 22, 22);
+    border-radius: 6px;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    z-index: -1;
+}
+
+.screen_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(21, 21, 21);
+}
+
+.screen_content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 97%;
+    height: 92%;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 5px 8px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.screen_content>h1 {
+    color: rgb(41, 137, 99);
+    margin-bottom: 5em;
+    font-size: 1.5em;
+}
+
+.searcher {
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    background: rgb(31, 117, 83);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.788);
+    border: 2px solid rgba(31, 209, 152, 0.452);
+    position: absolute;
+    overflow: hidden;
+    fill: white;
+}
+
+.searcher::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' opacity='0.7' class='bi bi-binoculars-fill' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 1A1.5 1.5 0 0 0 3 2.5V3h4v-.5A1.5 1.5 0 0 0 5.5 1h-1zM7 4v1h2V4h4v.882a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V13H9v-1.5a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5V13H1V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V4h4zM1 14v.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V14H1zm8 0v.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5V14H9zm4-11H9v-.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5V3z'/%3E%3C/svg%3E");
+    position: absolute;
+    color: rgb(190, 190, 190);
+    left: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.keyboard_transformer {
+    position: relative;
+    width: min-content;
+    height: max-content;
+}
+
+.keyboard_container {
+    width: 83vh;
+    height: 232px;
+    background: rgb(37, 151, 105);
+    border-radius: 10px;
+    position: relative;
+    user-select: none;
+}
+
+.keyboard_container::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(31, 117, 83);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+.keyboard_skeleton {
+    width: 97.5%;
+    height: 94%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(27, 27, 27, 0.392);
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3px;
+    z-index: 2
+}
+
+.keyboard_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.3px;
+    z-index: 1;
+}
+
+.keyboard_key {
+    flex: 1;
+    width: 95%;
+    height: 95%;
+    border-radius: 10px;
+    background-color: rgb(37, 151, 105);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.5em;
+    font-weight: bolder;
+    font-family: monospace;
+    color: rgba(45, 45, 45, 0.51);
+    cursor: pointer;
+    margin: 0.5px;
+    box-shadow: 0px 5px 0px 0.5px rgb(28, 117, 81);
+    transition: all 0.04s ease-in-out;
+    z-index: -1;
+    position: relative;
+}
+
+.keyboard_key:hover, .keyboard_key:active, .keyboard_key:focus {
+    transform: scale(0.95) translateY(1px);
+    background-color: rgb(41, 137, 99);
+    box-shadow: 0px 5px 0px 0.5px rgb(28, 117, 81);
+}
+
+.clickAnimation {
+    animation: clickAnimation 0.2s ease-in-out;
+}
+
+.keyboard_key15 {
+    flex: 1.5 !important;
+}
+
+.keyboard_key2 {
+    flex: 2 !important;
+}
+
+.keyboard_key3 {
+    flex: 3 !important;
+}
+
+.KB_emoji {
+    margin-left: 6px;
+    filter: grayscale(1);
+    opacity: 0.8;
+}
+
+.LeftUP {
+    position: absolute;
+    transform: translate(-09vw, -5vh) scale(0.5);
+}
+
+.LeftBottom {
+    position: absolute;
+    transform: translate(-09vw, 72vh) scale(0.5);
+}
+
+.RightUP {
+    position: absolute;
+    transform: translate(68.5vw, -5vh) scale(0.5);
+}
+
+.RightBottom {
+    position: absolute;
+    transform: translate(68.5vw, 72vh) scale(0.5);
+
+}
+
+@keyframes clickAnimation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0px 5px 0px 0.5px rgb(28, 117, 81);
+        background-color: rgb(37, 151, 105);
+
+    }
+
+    50% {
+        transform: scale(0.95) translateY(1px);
+        background-color: rgb(41, 137, 99);
+        box-shadow: 0px 5px 0px 0.5px rgb(28, 117, 81);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0px 5px 0px 0.5px rgb(28, 117, 81);
+        background-color: rgb(37, 151, 105);
+    }
+
+}
