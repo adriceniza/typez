@@ -1,28 +1,31 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@prisma/client": "^3.15.1",
-    "next": "12.1.6",
-    "random-words": "^1.1.2",
-    "react": "18.1.0",
-    "react-dom": "18.1.0"
-  },
-  "devDependencies": {
-    "@types/node": "17.0.38",
-    "@types/random-words": "^1.1.2",
-    "@types/react": "18.0.10",
-    "@types/react-dom": "18.0.5",
-    "eslint": "8.16.0",
-    "eslint-config-next": "12.1.6",
-    "prisma": "^3.15.1",
-    "typescript": "4.7.2"
-  }
+    "name": "frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "devP": "ts-node ./sandbox.ts",
+        "buildP": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate"
+    },
+    "dependencies": {
+        "@prisma/client": "^3.12.0",
+        "next": "12.1.6",
+        "random-words": "^1.1.2",
+        "react": "18.1.0",
+        "react-dom": "18.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "17.0.38",
+        "@types/random-words": "^1.1.2",
+        "@types/react": "18.0.10",
+        "@types/react-dom": "18.0.5",
+        "eslint": "8.16.0",
+        "eslint-config-next": "12.1.6",
+        "prisma": "^3.15.1",
+        "ts-node": "10.5.0",
+        "typescript": "4.7.2"
+    }
 }
