@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { keyboard } from '../constants/constants'
+import { keyboard } from '../constants'
 import styles from '../styles/Loader.module.css'
 import { useRouter } from 'next/router'
 import TKeyboard from './TKeyboard'
@@ -49,7 +49,7 @@ export default function Loader() {
             </div>
           </div>
         </div>
-        <TKeyboard  fakeSearch={fakeSearch} setFakeSearch={(t) => { setFakeSearch(t) }} />
+        <TKeyboard fakeSearch={fakeSearch} setFakeSearch={(t) => { setFakeSearch(t) }} />
       </div>
     </div>
   )

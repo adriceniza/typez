@@ -20,7 +20,7 @@
 }
 
 .input::before {
-    content: "zeni@typez:~$";
+    content: attr(data-before);
     color: var(--typez_purple);
     margin-right: 5px;
 }

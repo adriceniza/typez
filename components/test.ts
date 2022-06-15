@@ -1,5 +1,5 @@
 import words, * as rdmw from "random-words";
-import { delay } from "../constants/constants";
+import { delay } from "../constants";
 import styles from "../styles/Test.module.css";
 
 let characters = 0;

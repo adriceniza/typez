@@ -7,6 +7,7 @@ export default interface ITypezModal {
   customCancelButtonText?: string;
   customOKButtonText?: string;
   icon?: string;
+  loader?: boolean;
   onOK?: () => void;
   onConfirm?: () => void;
   onCancel?: () => void;

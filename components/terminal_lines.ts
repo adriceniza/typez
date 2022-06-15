@@ -1,4 +1,4 @@
-import * as CONSTANTS from "../constants/constants";
+import * as CONSTANTS from "../constants";
 const scrollToLastLine = () => {
   const lines = document.getElementsByClassName("line");
   let last_line = lines[lines.length - 1]!;

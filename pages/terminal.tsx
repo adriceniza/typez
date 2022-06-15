@@ -1,18 +1,21 @@
 import { ReactElement, useEffect, useState } from 'react';
 import * as TERMINAL from '../components/Terminal'
 import { loopLines } from '../components/terminal_lines';
-import { banner } from '../constants/constants';
+import { banner } from '../constants';
 import TypezModal from '../components/TypezModal';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import styles from '../styles/Terminal.module.css'
 import input_styles from '../styles/Input.module.css'
-import TKeyboard from '../components/TKeyboard';
+import updInputBefore from '../hooks/updInputBefore';
 
 export default function Terminal(): ReactElement<any, any> {
   const router = useRouter()
   const [focus, setFocus] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [showModal, setShowModal] = useState(false)
+
+  const { status } = useSession()
 
   setTimeout(() => {
     setShowModal(true)
@@ -40,9 +43,12 @@ export default function Terminal(): ReactElement<any, any> {
     hidden_input?.addEventListener('keydown', enterListener)
     terminal?.click();
 
+    updInputBefore();
+
   }, [])
   return (
     <>
+      <TypezModal loader={status === "loading"} show={status === 'unauthenticated'} text={"You are not logged in"} customCancelButtonText='Continue as guest' customConfirmButtonText='Go to log in.' onConfirm={() => { router.push('/login') }} isQuestion />
       <div className={styles.container} id="terminal">
         <div className={styles.lines} id="terminal_lines"></div>
         <div className={input_styles.new_line}>

@@ -22,4 +22,13 @@ const keyboard = [
   ["Shift", "<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-"],
   ["Ctrl", "Win", "Alt", "Space", "Alt", "FN", "Ctrl"],
 ];
-export { banner, space, delay, keyboard };
+const help = [
+  "<a>help</a> : Show all available commands",
+  "<a>login</a> : Login to the server",
+  "<a>logout</a> : Logout from the server",
+  "<a>whoami</a> : Show your account information",
+  "<a>test</a> : Quick typing test",
+  "<a>clear || cls</a> : Clear the terminal",
+  "<a>settings</a> : Show settings",
+]
+export { banner, space, delay, keyboard, help };

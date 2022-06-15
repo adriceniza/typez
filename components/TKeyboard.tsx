@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { keyboard } from '../constants/constants'
+import { keyboard } from '../constants'
 import ITKeyboard from '../Interfaces/ITKeyboard'
 import styles from '../styles/Loader.module.css'
 

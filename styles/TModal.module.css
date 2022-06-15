@@ -38,15 +38,19 @@
 }
 
 .typezmodal_body {
-    width: 50%;
-    height: 50%;
+    min-width: 40%;
+    min-height: 40%;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 99999;
     border-radius: 7px;
-    padding: 0.5em;
+    padding: 2.5em;
     background: rgba(44, 113, 76, 0.096);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -118,13 +122,11 @@
 }
 
 .text {
-    margin-top: 1em;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 10%;
+    text-align: center;
 }
 
 .text>span {
@@ -134,20 +136,60 @@
 }
 
 .buttons {
-    position: absolute;
     bottom: 15%;
     left: 50%;
-    transform: translateX(-50%);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.buttons>button {
+    flex: 1;
+    margin: 1.5em 0.5em 0.5em 0.5em;
+    background-color: var(--typez_green);
+    padding: 0.5em;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+.buttons>button:hover {
+    transform: translateY(-0.15em);
+
+}
+
 .closeModal {
     position: absolute;
     top: 1em;
     right: 1em;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: var(--typez_green);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    z-index: 9999;
+
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-top: 5px solid var(--bg);
+    animation: spin 1s linear infinite;
+    z-index: 99999;
 }
 
 /* media */
@@ -161,6 +203,15 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 99999;
     }
+}
+
+
+@media screen and (max-width: 600px) {
+    .typezmodal_body {
+        min-width: 70%;
+        min-height: 80%;
+    }
+
 }
 
 
@@ -190,6 +241,17 @@
 
     100% {
         opacity: 1;
+    }
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 
 }

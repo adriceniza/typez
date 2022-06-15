@@ -1,7 +1,6 @@
-import React from 'react'
-import Loader from '../components/loader'
+import Loader from '../components/KBLoader'
 export default function Index() {
-  return (
-    <Loader  />
-  )
+  return <>
+    <Loader />
+  </>
 }
