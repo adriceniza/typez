@@ -42,8 +42,11 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  level         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now())
 
-  stats Stats[]
+  gameresults GameResult[]
 }
 
 model VerificationToken {
@@ -54,11 +57,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Stats {
-  id         String @id @default(cuid())
+model GameResult {
+  id         String   @id @default(cuid())
   userId     String
-  WPMAverage Float?
-  WPMMax     Float?
+  gameId     String
+  WPMAverage Int
+  expEarned  Int
+  timestamp  DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

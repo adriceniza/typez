@@ -1,34 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import styles from '../styles/Login.module.css'
 import updInputBefore from '../hooks/updInputBefore'
 import SpinnerLoader from './SpinnerLoader'
 export default function Login() {
-    const router = useRouter()
     const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState('')
+
+    useEffect(() => {
+        setError(window.location.search.split('error=')[1])
+    }
+        , [])
+
+    { error && console.log({ error: error }) }
+
     return (
         <>
             <div className={styles.login}>
                 <div className={styles.loginContent}>
                     <SpinnerLoader loading={isLoading} />
-                    <form className={styles.loginForm}>
-                        <label>
-                            Email:
-                            <input type="email" name="email" autoComplete='off' />
-                        </label>
-                        <label>
-                            Password:
-                            <input type="password" name="password" />
-                        </label>
-                        <div className={styles.loginForm_buttons}>
-                            <button type="submit" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-door-open-fill" viewBox="0 0 16 16">
-                                    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
-                                </svg> Login
-                            </button>
-                        </div>
-                    </form>
+                    {error && <span className={styles.error}>{`Something went wrong, try again.`}</span>}
+                    <p>Choose a login method</p>
                     <div className={styles.oAuth}>
                         <a onClick={() => { setIsLoading(true), signIn("github", { callbackUrl: '/' }).then(() => { updInputBefore() }) }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">

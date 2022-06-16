@@ -1,5 +1,6 @@
 import words, * as rdmw from "random-words";
 import { delay } from "../constants";
+import { pushGameRecord } from "../services/gamerecords.service";
 import styles from "../styles/Test.module.css";
 
 let characters = 0;
@@ -173,12 +174,6 @@ const testEventListener = async (e: { key: string }) => {
     return;
   }
 
-  //Control + Z
-  if (lastKey === "Control" && e.key === "z") {
-    finishTest(characters);
-    return;
-  }
-
   //Control + B
   if (lastKey === "Control" && e.key === "b") {
     window.location.href = "/?";
@@ -277,12 +272,6 @@ const generateTestUI = () => {
   cursor.id = "cursor";
   container.appendChild(cursor);
 
-  const goBack = document.createElement("div");
-  goBack.className = styles.goBack;
-  goBack.id = "goBack";
-  goBack.innerHTML = "<key>ctrl</key> + <key>z</key> finish.</a>";
-  container.appendChild(goBack);
-
   //container to advise user to press F1 to open settings menu
   const settings_container = document.createElement("div");
   settings_container.className = styles.settings_container;
@@ -293,7 +282,6 @@ const generateTestUI = () => {
   settings_text.innerHTML = "<key>F2</key> settings.";
   settings_container.appendChild(settings_text);
   container.appendChild(settings_container);
-
 
   if (document.getElementById(`${WORDS[word_index]}`)) {
     moveCursor(document.getElementById(`${WORDS[word_index]}`)!);
@@ -336,23 +324,6 @@ const generateStatsUI = (wpm: number, precision: number) => {
     window.addEventListener("keydown", statsEventListener);
   }, 2000);
 };
-
-// const SettingsMenu = ()=>{
-//   const display = ()=>{
-
-//   }
-//   const remove = ()=>{
-
-//   }
-
-//   const container = document.createElement('div');
-//   container.className = styles.settingsMenu_container;
-//   container.id = 'settingsMenu_container';
-//   const settings_container = document.createElement('div');
-//   settings_container.className = styles.settings_container;
-//   settings_container.id = 'settings_container';
-
-// }
 const resetVariables = () => {
   word_index = 0;
   value = "";
@@ -370,6 +341,12 @@ const finishTest = (characters: number) => {
   const countdown = document.getElementById("countdown")!;
   countdown?.remove();
   generateStatsUI(calcWPM(characters), calcAccuracy());
+  pushGameRecord({
+    userId: "",
+    gameId: "test",
+    WPMAverage: calcWPM(characters),
+    expEarned: 202,
+  });
   resetVariables();
 };
 export { generateTestUI };

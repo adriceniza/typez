@@ -5,13 +5,11 @@ import { useEffect } from 'react'
 import '../styles/globals.css'
 function MyApp({ Component, pageProps }: AppProps) {
 
-
-
   useEffect(() => {
     if (localStorage.getItem('kb') === null) {
       localStorage.setItem('kb', 'false')
     }
-    
+
   }, [])
   return (<>
     <Head>
@@ -19,7 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <meta name="description" content="Terminal based typetests." />
       <link rel="icon" href="/tempLOGO.png" />
     </Head>
-    <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
+    <SessionProvider
+      session={pageProps.session}
+      refetchInterval={5 * 60}
+      refetchOnWindowFocus={true}>
       <Component {...pageProps} />
     </SessionProvider>
   </>)

@@ -12,16 +12,18 @@
     },
     "dependencies": {
         "@next-auth/prisma-adapter": "^1.0.3",
+        "axios": "^0.27.2",
         "bcryptjs": "^2.4.3",
         "jsonwebtoken": "^8.5.1",
         "next": "12.1.6",
         "next-auth": "^4.5.0",
+        "next-connect": "^0.12.2",
         "random-words": "^1.1.2",
         "react": "18.1.0",
         "react-dom": "18.1.0"
     },
     "devDependencies": {
-        "@prisma/client": "^3.15.1",
+        "@prisma/client": "^3.15.2",
         "@types/bcryptjs": "^2.4.2",
         "@types/jsonwebtoken": "^8.5.8",
         "@types/node": "17.0.38",
@@ -30,7 +32,7 @@
         "@types/react-dom": "18.0.5",
         "eslint": "8.16.0",
         "eslint-config-next": "12.1.6",
-        "prisma": "^3.15.1",
+        "prisma": "^3.15.2",
         "ts-node": "10.5.0",
         "typescript": "4.7.2"
     }

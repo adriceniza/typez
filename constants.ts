@@ -4,7 +4,7 @@ const banner = [
   "    &#92;/_/&#92; &#92;/ &#92; &#92;____ &#92;  &#92; &#92;  _-/ &#92; &#92;  __&#92;   &#92;/_/  /__  ",
   "       &#92; &#92;_&#92;  &#92;/&#92;_____&#92;  &#92; &#92;_&#92;    &#92; &#92;_____&#92;   /&#92;_____&#92; ",
   "        &#92;/_/   &#92;/_____/   &#92;/_/     &#92;/_____/   &#92;/_____/ ",
-
+  " ",
   "Welcome to typez, use <a>'help'</a> to see the available commands",
 ];
 
@@ -28,7 +28,8 @@ const help = [
   "<a>logout</a> : Logout from the server",
   "<a>whoami</a> : Show your account information",
   "<a>test</a> : Quick typing test",
-  "<a>clear || cls</a> : Clear the terminal",
+  "<a>lr</a> : Show your last game record",
+  "<a>clear | cls</a> : Clear the terminal",
   "<a>settings</a> : Show settings",
-]
+];
 export { banner, space, delay, keyboard, help };

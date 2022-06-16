@@ -10,16 +10,11 @@ import input_styles from '../styles/Input.module.css'
 import updInputBefore from '../hooks/updInputBefore';
 
 export default function Terminal(): ReactElement<any, any> {
-  const router = useRouter()
   const [focus, setFocus] = useState(false)
   const [inputValue, setInputValue] = useState('')
-  const [showModal, setShowModal] = useState(false)
 
   const { status } = useSession()
-
-  setTimeout(() => {
-    setShowModal(true)
-  }, 2000)
+  const router = useRouter()
 
   const enterListener = (e: any) => {
     { typeof e === 'string' && (TERMINAL.commandHandler(e, router), setInputValue('')) }
