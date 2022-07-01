@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Terminal_ from "./Terminal_";
 import styles from "@styles/ModalTerminal.module.css";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 
 export default function ModalTerminal() {
@@ -27,7 +27,7 @@ export default function ModalTerminal() {
         <div
           className={styles.modalTerminal__screen}>
           <div className={styles.modalTerminal__commands}>
-            <Terminal_ modal />
+            <Terminal_ modal show={show} />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { banner } from '../../constants'
 import updInputBefore from '@hooks/updInputBefore'
@@ -8,12 +8,10 @@ import styles from '@styles/Terminal.module.css'
 import input_styles from '@styles/Input.module.css'
 import ITerminal from '@interfaces/ITerminal'
 export default function Terminal(props: ITerminal) {
-    const [focus, setFocus] = useState(false)
     const [inputValue, setInputValue] = useState('')
-
     const router = useRouter()
+    const inputElement = useRef(null);
     let inCD = false
-
 
     const handleInput = (e: any) => {
         const fake_input = document.getElementById("fake_input");
@@ -54,36 +52,34 @@ export default function Terminal(props: ITerminal) {
         }
     }
 
+
+    // Use effect to set focus when its visible (only used in modal terminal)
     useEffect(() => {
-        const hidden_input = document.getElementById('hidden_input')
-        if (!focus) {
-            hidden_input!.blur();
+        if (inputElement['current']) {
+            if (props.show) {
+                (inputElement['current'] as HTMLInputElement).focus();
+            } else {
+                (inputElement['current'] as HTMLInputElement).blur();
+            }
         }
-        else {
-            hidden_input!.focus();
-        }
-    }, [focus])
+    }, [props.show])
 
     useEffect(() => {
         loopLines(banner, 0, 100, true);
         const hidden_input = document.getElementById('hidden_input')
-        let terminal = document.getElementById('terminal');
-
-        window.addEventListener('click', (e: MouseEvent) => {
-            let targetID = (e.target as HTMLElement).id
-            setFocus(targetID === 'terminal')
-        })
         hidden_input?.addEventListener('keydown', handleInput)
         updInputBefore();
 
-        !props.modal && terminal?.click();
+        if (inputElement['current']) {
+            (inputElement['current'] as HTMLInputElement).focus();
+        }
     }, [])
     return (
-        <div className={`${styles.container} ${focus && styles.terminal_focus} ${props.modal && styles.modalTerminal__terminal}`} id="terminal">
+        <div className={`${styles.container} ${styles.terminal_focus} ${props.modal && styles.modalTerminal__terminal}`} id="terminal">
             <div className={`${styles.lines} ${props.modal && styles.modalTerminal__lines}`} id="terminal_lines"></div>
             <div className={input_styles.new_line}>
-                <div className={`${!focus && input_styles.input_inactive} ${props.modal && input_styles.modal_input} ${input_styles.input}`} id="fake_input">{inputValue}</div>
-                <input autoComplete='off' type="text" id="hidden_input" className={styles.hidden_input} onChange={(e) => { setInputValue(e.target.value) }} />
+                <div className={`${props.modal && input_styles.modal_input} ${input_styles.input}`} id="fake_input">{inputValue}</div>
+                <input autoComplete='off' type="text" onBlur={(e) => { e.target.focus() }} ref={inputElement} id="hidden_input" className={styles.hidden_input} onChange={(e) => { setInputValue(e.target.value) }} />
             </div>
         </div>
     )
