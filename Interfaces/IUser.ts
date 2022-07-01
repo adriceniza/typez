@@ -3,6 +3,8 @@ export default interface IUserSession {
   emailVerified: boolean | null;
   id: string;
   image: string;
-  level: number;
+  exp: number;
+  username: string;
   name: string;
+  createdAt: string;
 }

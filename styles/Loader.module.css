@@ -18,7 +18,7 @@
 }
 
 .screen {
-    width: 82vh;
+    width: 600px;
     height: 280px;
     display: flex;
     justify-content: center;
@@ -112,7 +112,7 @@
 }
 
 .keyboard_container {
-    width: 83vh;
+    width: 600px;
     height: 232px;
     background: rgb(37, 151, 105);
     border-radius: 10px;
@@ -251,4 +251,25 @@
         background-color: rgb(37, 151, 105);
     }
 
+}
+
+@media (max-width:1100px) {
+
+    .container {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width:600px) {
+
+    .container {
+        transform: scale(0.6);
+    }
+}
+
+@media (max-width:400px) {
+
+    .container {
+        transform: scale(0.5);
+    }
 }

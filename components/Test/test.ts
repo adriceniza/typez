@@ -1,7 +1,8 @@
-import words, * as rdmw from "random-words";
-import { delay } from "../constants";
-import { pushGameRecord } from "../services/gamerecords.service";
-import styles from "../styles/Test.module.css";
+import rdmw from "random-words";
+import { delay } from "../../constants";
+import { pushGameRecord } from "@services/gamerecords.service";
+import { gainExperience } from "@services/users.service";
+import styles from "@styles/Test.module.css";
 
 let characters = 0;
 let WORDS: string[] | any[];
@@ -88,7 +89,6 @@ const calcAccuracy = () => {
 };
 
 const countDown = async (sec: number) => {
-  console.log("countdown started", sec);
   const app = document.getElementById("terminal_test")!;
   const countdown = document.createElement("div");
   countdown.className = styles.countdown;
@@ -97,6 +97,10 @@ const countDown = async (sec: number) => {
   app.appendChild(countdown);
 
   for (let i = sec; i > 0; i--) {
+    if (window.location.pathname.slice(1) !== "test") {
+      i = 0;
+      forceFinish();
+    }
     await delay(1000);
     timeElapsed++;
     countdown.innerHTML = (sec - timeElapsed).toString();
@@ -174,14 +178,10 @@ const testEventListener = async (e: { key: string }) => {
     return;
   }
 
-  //Control + B
-  if (lastKey === "Control" && e.key === "b") {
-    window.location.href = "/?";
-    return;
-  }
-
   //Enter or space
   if (e.key === "Enter" || e.key === " ") {
+    if (!countdownStarted) countDown(testTime);
+    countdownStarted = true;
     if (WORDS[word_index].length > value.length) {
       missedWords(WORDS, word_index, value.length);
     }
@@ -238,7 +238,7 @@ const testEventListener = async (e: { key: string }) => {
         checkLetter(e.key, WORDS, word_index, value.length - 1);
       }
     } catch (err) {
-      console.log("rerrr");
+      console.error(err);
     }
   }
   lastKey = e.key;
@@ -332,6 +332,7 @@ const resetVariables = () => {
   timeElapsed = 0;
   WORDS = [];
   next_words = [];
+  characters = 0;
 };
 
 const finishTest = (characters: number) => {
@@ -341,12 +342,22 @@ const finishTest = (characters: number) => {
   const countdown = document.getElementById("countdown")!;
   countdown?.remove();
   generateStatsUI(calcWPM(characters), calcAccuracy());
+  let exp = 202;
+  gainExperience(exp);
   pushGameRecord({
     userId: "",
     gameId: "test",
     WPMAverage: calcWPM(characters),
-    expEarned: 202,
+    expEarned: exp,
   });
+  resetVariables();
+};
+const forceFinish = () => {
+  window.removeEventListener("keydown", testEventListener);
+  const test_game = document.getElementById("test_game")!;
+  test_game?.remove();
+  const countdown = document.getElementById("countdown")!;
+  countdown?.remove();
   resetVariables();
 };
 export { generateTestUI };
