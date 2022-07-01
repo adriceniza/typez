@@ -22,14 +22,24 @@ const keyboard = [
   ["Shift", "<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-"],
   ["Ctrl", "Win", "Alt", "Space", "Alt", "FN", "Ctrl"],
 ];
-const help = [
-  "<a>help</a> : Show all available commands",
-  "<a>login</a> : Login to the server",
-  "<a>logout</a> : Logout from the server",
-  "<a>whoami</a> : Show your account information",
-  "<a>test</a> : Quick typing test",
-  "<a>lr</a> : Show your last game record",
-  "<a>clear | cls</a> : Clear the terminal",
-  "<a>settings</a> : Show settings",
+const help_logged = [
+  "<a>help</a> : Show all available commands.",
+  "<a>cd</a> : Command to change current location.",
+  "<a>me</a> : Go to your profile page.",
+  "<a>whoami</a> : Show your account information.",
+  "<a>test</a> : Quick typing test.",
+  "<a>lr</a> : Show your last game record.",
+  "<a>avg</a> : Show your average typing speed.",
+  "<a>config</a> : See config file.",
+  "<a>logout</a> : Logout from the server.",
+  "<a>cls</a> : Clear the terminal.",
 ];
-export { banner, space, delay, keyboard, help };
+const help_not_logged = [
+  "<a>help</a> : Show all available commands.",
+  "<a>cd</a> : Command to change current location.",
+  "<a>login</a> : Login to the server.",
+  "<a>test</a> : Quick typing test.",
+  "<a>config</a> : See config file.",
+  "<a>cls</a> : Clear the terminal.",
+];
+export { banner, space, delay, keyboard, help_logged, help_not_logged };
