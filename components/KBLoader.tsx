@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { keyboard } from '../constants'
-import styles from '../styles/Loader.module.css'
+import styles from '@styles/Loader.module.css'
 import { useRouter } from 'next/router'
-import TKeyboard from './TKeyboard'
+import TKeyboard from '@components/TKeyboard'
 export default function Loader() {
 
   const router = useRouter()
