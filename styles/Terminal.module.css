@@ -8,7 +8,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: var(--bg)
+    background-color: var(--bg);
+    cursor: pointer;
 }
 
 .lines>span {
@@ -47,6 +48,10 @@
 
 }
 
+.lines>span {
+    width: 100%;
+}
+
 .lines>span>p>a {
     cursor: pointer !important;
     color: var(--typez_purple);
@@ -58,6 +63,7 @@
     width: 100%;
     max-height: 80%;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .hidden_input {
@@ -65,7 +71,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1 ;
+    z-index: -1;
+}
+
+.terminal_focus {
+    pointer-events: none;
 }
 
 .click_to_focus {
@@ -87,4 +97,28 @@
 
 .hidden {
     display: none;
+}
+
+.modalTerminal__terminal {
+    position: relative !important;
+    animation: boxShadowScreenEffect 3.5s infinite alternate;
+}
+
+.modalTerminal__lines {
+    font-size: 75% !important;
+}
+
+@keyframes boxShadowScreenEffect {
+    0% {
+        box-shadow: inset 0px 0px 30px rgba(27, 63, 30, 0.542);
+
+    }
+
+    50% {
+        box-shadow: inset 0px 0px 30px rgba(31, 77, 35, 0.342);
+    }
+
+    100% {
+        box-shadow: inset 0px 0px 30px rgba(41, 71, 44, 0.742);
+    }
 }

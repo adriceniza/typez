@@ -3,7 +3,9 @@
   --typez_green__08: rgba(37, 151, 105, 0.8);
   --typez_blue: rgb(0, 255, 255);
   --typez_purple: rgb(159, 23, 197);
+  --typez_purple_08: rgba(159, 23, 197, 0.616);
   --bg: rgb(33, 33, 33);
+  --secondary_bg_color: rgb(45, 45, 45);
 }
 
 .App {
@@ -15,6 +17,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: var(--bg);
 }
 
 .admin {
@@ -98,4 +101,34 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: var(--typez_purple);
   cursor: ew-resize;
   transition: all 0.2s ease-in-out;
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+  transition: 1s all;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+::-webkit-progress-value {
+  background-color: var(--typez_green);
+}
+
+::-moz-progress-bar {
+  background-color: var(--typez_green);
+}
+
+::-ms-fill {
+  background-color: var(--typez_green);
+}
+
+::-webkit-progress-value {
+  transition: width 1s;
 }

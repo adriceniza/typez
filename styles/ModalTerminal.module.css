@@ -1,0 +1,136 @@
+.modalTerminal {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: rgba(20, 20, 20, 0.732);
+    z-index: 9999999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: opacityFadeIn 0.3s;
+    backdrop-filter: blur(2.1px);
+    -webkit-backdrop-filter: blur(2.1px);
+}
+
+.modalTerminal__screen {
+    width: 450px;
+    height: 450px;
+    border-radius: 15px;
+    background-color: rgb(151, 151, 140);
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border: 4px solid rgba(122, 122, 118, 0.419);
+    animation: fadeIn 0.5s;
+
+}
+
+.modalTerminal__screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 101.5%;
+    height: 96%;
+    border-radius: 20px;
+    margin-top: 32px;
+    background-color: rgb(83, 83, 76);
+    z-index: -1;
+}
+
+.modalTerminal__screen::after {
+    content: '·';
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+    font-weight: bolder;
+    font-size: 45px;
+    opacity: 0.5;
+    animation: screenOnOffLight 4s infinite alternate;
+}
+
+.modalTerminal__commands {
+    width: 95%;
+    height: 90%;
+    margin-top: 7px;
+    border-radius: 15px;
+    background-color: var(--bg);
+    border: 4px solid var(--secondary_bg_color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hidden {
+    animation: smoothHide ease 0.5s forwards;
+    display: none;
+}
+
+@media (max-width: 550px) {
+    .modalTerminal__screen {
+        width: 350px;
+        height: 350px;
+    }
+
+}
+
+@keyframes fadeIn {
+
+    0% {
+        margin-top: 15vh;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+@keyframes opacityFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes smoothHide {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes screenOnOffLight {
+    0% {
+        color: var(--typez_purple);
+    }
+
+    20% {
+        color: var(--secondary_bg_color);
+    }
+
+    50% {
+        color: var(--typez_purple);
+    }
+
+    70% {
+        color: var(--secondary_bg_color);
+    }
+
+    100% {
+        color: var(--typez_purple);
+    }
+
+}

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import styles from '../styles/Login.module.css'
-import updInputBefore from '../hooks/updInputBefore'
-import SpinnerLoader from './SpinnerLoader'
+import styles from '@styles/Login.module.css'
+import updInputBefore from '@hooks/updInputBefore'
+import SpinnerLoader from '@components/SpinnerLoader'
 export default function Login() {
     const [isLoading, setIsLoading] = React.useState(false)
     const [error, setError] = React.useState('')

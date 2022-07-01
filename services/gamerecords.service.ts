@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getSession } from "next-auth/react";
-import IUserSession from "../Interfaces/IUserSession";
+import IUserSession from "../Interfaces/IUser";
 import IGameRecord from "../Interfaces/IGameRecord";
 
 const pushGameRecord = async (data: IGameRecord) => {
@@ -35,5 +35,6 @@ const getAverageWPM = async () => {
       allWPM.length
   );
 };
+
 
 export { pushGameRecord, getLastGameRecord, getAverageWPM };

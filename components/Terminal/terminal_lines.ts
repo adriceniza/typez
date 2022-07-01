@@ -1,4 +1,4 @@
-import * as CONSTANTS from "../constants";
+import * as CONSTANTS from "../../constants";
 const scrollToLastLine = () => {
   const lines = document.getElementsByClassName("line");
   let last_line = lines[lines.length - 1]!;
@@ -46,8 +46,7 @@ const pushLine = (line: string, isAdmin: boolean = false) => {
   const terminal = document.getElementById("terminal_lines")!;
   isAdmin
     ? (terminal.innerHTML += "<p class='admin line'> typez: " + line + "</p>")
-    : (terminal.innerHTML +=
-        "<p class='line'> guest@typez:~$ " + line + "</p>");
+    : (terminal.innerHTML += `<p class='line'>${line}</p>`);
   scrollToLastLine();
 };
 

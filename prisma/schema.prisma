@@ -35,18 +35,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
+  id            String       @id @default(cuid())
+  username      String       @unique
+  name          String
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  level         Int       @default(0)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now())
-
-  gameresults GameResult[]
+  exp           Int          @default(0)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @default(now())
+  gameresults   GameResult[]
 }
 
 model VerificationToken {

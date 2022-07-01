@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import styles from '../styles/TModal.module.css'
+import styles from '@styles/SpinnerLoader.module.css'
 interface ISpinnerLoader {
     loading: boolean
 }
