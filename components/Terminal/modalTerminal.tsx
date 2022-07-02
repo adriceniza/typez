@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Terminal_ from "./Terminal_";
 import styles from "@styles/ModalTerminal.module.css";
-// import { motion } from "framer-motion";
 
 
 export default function ModalTerminal() {
   let temp_show = false
   const [show, setShow] = useState(temp_show)
+  const [hidden, setHidden] = useState(temp_show)
 
   const keyDownHandleShow = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       temp_show = !temp_show
-      setShow(temp_show)
+      if (temp_show) {
+        setHidden(false)
+        setTimeout(() => {
+          setShow(true)
+        }, 50)
+      } else {
+        setShow(false)
+        setTimeout(() => {
+          setHidden(true)
+        }, 300)
+      }
     }
   }
-
 
   useEffect(() => {
     temp_show = false
@@ -23,7 +32,7 @@ export default function ModalTerminal() {
   return (
     <>
 
-      <div className={`${show ? styles.modalTerminal : styles.hidden}`}>
+      <div data-show={show} data-hidden={hidden} className={`${styles.modalTerminal}`}>
         <div
           className={styles.modalTerminal__screen}>
           <div className={styles.modalTerminal__commands}>
