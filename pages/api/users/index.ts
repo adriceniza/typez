@@ -15,7 +15,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
           const user = await prisma.user.findFirst({
             where: {
-              username: req.query.username as string,
+              username: {
+                equals: req.query.username as string,
+                mode: "insensitive",
+              },
             },
           });
           res.status(200).json(user);

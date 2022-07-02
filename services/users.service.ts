@@ -9,7 +9,9 @@ const getAllUsernames = async () => {
 const getUserFromUsername = async (username: string) => {
   let response;
   await axios
-    .get(`api/users?mode=getUserFromUsername&username=${username}`)
+    .get(
+      `api/users?mode=getUserFromUsername&username=${username.toLowerCase()}`
+    )
     .then((res) => {
       response = res;
     })
