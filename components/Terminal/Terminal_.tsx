@@ -4,51 +4,26 @@ import { banner } from '../../constants'
 import updInputBefore from '@hooks/updInputBefore'
 import { loopLines } from '@components/Terminal/terminal_lines'
 import * as TERMINAL_UTILS from '@components/Terminal/Terminal_utils'
+import ITerminal from '@interfaces/ITerminal'
 import styles from '@styles/Terminal.module.css'
 import input_styles from '@styles/Input.module.css'
-import ITerminal from '@interfaces/ITerminal'
 export default function Terminal(props: ITerminal) {
     const [inputValue, setInputValue] = useState('')
     const router = useRouter()
     const inputElement = useRef(null);
-    let inCD = false
 
     const handleInput = (e: any) => {
         const fake_input = document.getElementById("fake_input");
         const fake_input_before = fake_input?.getAttribute('data-before')
-
-        if (e.key === ' ') {
-            if (e.target.value.replace(' ', '') === 'cd') {
-                inCD = true
+        if (e.key === 'Enter') {
+            if (e.target.value.length !== '') {
+                let command = e.target.value
+                TERMINAL_UTILS.commandHandler(command, router)
+                setInputValue('')
                 e.target.value = ''
-
-                fake_input?.setAttribute('data-before', fake_input_before + ' cd ~> ')
+            } else {
+                return false
             }
-        }
-        if (e.key === 'Backspace' && fake_input?.innerHTML === '') {
-            fake_input?.setAttribute('data-before', (fake_input_before as string).replace(' cd ~> ', ''))
-            e.target.value = ''
-            inCD = false
-        }
-        else if (e.key === 'Enter') {
-            switch (inCD) {
-                case true:
-                    let route = `/${(fake_input?.innerHTML)?.replace(' ', '')}`
-                    router.push(route)
-                    fake_input?.setAttribute('data-before', fake_input_before as string)
-                    e.target.value = ''
-                    inCD = false
-                    break;
-                case false:
-                    TERMINAL_UTILS.commandHandler(e.target.value, router)
-                    setInputValue('')
-                    e.target.value = ''
-                    break
-
-                default:
-                    break;
-            }
-
         }
     }
 

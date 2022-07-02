@@ -13,6 +13,7 @@ import {
 import asciiGameRecord from "../Ascii/asciiGameRecord";
 import IUserSession from "@interfaces/IUser";
 let value = "";
+
 const clsInputValue: ITerminal_utils["clsInputValue"] = (setInput: any) => {
   value = "";
   setInput(value);
@@ -24,7 +25,19 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
   const user = await getSession().then(
     (session) => session?.user as IUserSession
   );
-  switch (command) {
+
+  if (
+    command.substring(0, 3) === "cd " &&
+    RegExp(/[a-zA-Z]/).test(command.slice(3))
+  ) {
+    let username = command.slice(3);
+    router.push(username);
+    return true;
+  }
+  switch (command.toLowerCase()) {
+    case "hello":
+      pushLine(`Hello ${user ? user.username : "guest"}.`);
+      return true;
     case "help":
       loopLines(
         user ? CONSTANTS.help_logged : CONSTANTS.help_not_logged,
