@@ -9,12 +9,8 @@ import styles from '../styles/Profile.module.css'
 import ModalTerminal from '../components/Terminal/modalTerminal';
 import Layout from '@components/Layout';
 
-
-
-
 export default function username() {
   const router = useRouter();
-
   const [user, setUser] = useState<IUser>()
   const [level, setLevel] = useState<ILevel | undefined>({
     level: 0,
@@ -22,18 +18,26 @@ export default function username() {
   })
   const [levelProgress, setLevelProgress] = useState(0)
 
-  useEffect(() => {
-    setLevel(useLevel(user as IUserSession))
-    setTimeout(() => { setLevelProgress(user?.exp as number) }, 1)
-  }, [user])
-  useEffect(() => {
-    let username = window.location.href.split('/')[3]
+  const fetchUser = () => {
+    let username = router.asPath.slice(1)
     getUserFromUsername(username)
       .then(res => {
         let response = res as any
         setUser(response?.data)
       })
       .catch(err => { console.log(`Error : ${err}`); router.push('/terminal') })
+  }
+  useEffect(() => {
+    setLevel(useLevel(user as IUserSession))
+    setTimeout(() => { setLevelProgress(user?.exp as number) }, 1)
+  }, [user])
+
+  useEffect(() => {
+    fetchUser();
+  }, [router])
+
+  useEffect(() => {
+    fetchUser();
   }, [])
   return (
 
@@ -57,3 +61,4 @@ export default function username() {
 
   )
 }
+
