@@ -7,4 +7,5 @@ export default interface IUserSession {
   username: string;
   name: string;
   createdAt: string;
+  gameresults: [];
 }
