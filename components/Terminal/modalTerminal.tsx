@@ -6,7 +6,7 @@ import styles from "@styles/ModalTerminal.module.css";
 export default function ModalTerminal() {
   let temp_show = false
   const [show, setShow] = useState(temp_show)
-  const [hidden, setHidden] = useState(temp_show)
+  const [hidden, setHidden] = useState(true)
 
   const keyDownHandleShow = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
