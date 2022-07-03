@@ -2,6 +2,8 @@ import axios from "axios";
 import { getSession } from "next-auth/react";
 import IUserSession from "../Interfaces/IUser";
 import IGameRecord from "../Interfaces/IGameRecord";
+import { getUserFromUsername } from "./users.service";
+import IUser from "../Interfaces/IUser";
 
 const pushGameRecord = async (data: IGameRecord) => {
   const user = await getSession().then(
@@ -23,7 +25,7 @@ const getLastGameRecord = async () => {
   return lastRecord.data;
 };
 
-const getAverageWPM = async () => {
+const getAverageWPM = async (username?: string) => {
   const user = await getSession().then(
     (session) => session?.user as IUserSession
   );
@@ -36,5 +38,12 @@ const getAverageWPM = async () => {
   );
 };
 
+const getWpmRecord = async (id: string) => {
+  let response;
+  await axios.get(`api/gameRecords?mode=getWpmRecord&id=${id}`).then((res) => {
+    response = res;
+  });
+  return response;
+};
 
-export { pushGameRecord, getLastGameRecord, getAverageWPM };
+export { pushGameRecord, getLastGameRecord, getAverageWPM, getWpmRecord };

@@ -3,6 +3,30 @@ import { prisma } from "../../../lib/prisma";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     if (req.query.id) {
+      if (req.query.mode === "all") {
+        await prisma?.gameResult
+          .findMany({
+            where: { userId: req.query.id as string },
+          })
+          .then((gr) => {
+            return res.status(200).json(gr);
+          });
+      }
+      if (req.query.mode === "getWpmRecord") {
+        try {
+          await prisma.gameResult
+            .findFirst({
+              where: {
+                userId: req.query.id as string,
+              },
+              select: { WPMAverage: true },
+              orderBy: { WPMAverage: "desc" },
+            })
+            .then((response) => {
+              return res.status(200).json(response);
+            });
+        } catch (error) {}
+      }
       if (req.query.mode === "allWPM") {
         const allWPM = await prisma?.gameResult.findMany({
           where: { userId: req.query.id as string },

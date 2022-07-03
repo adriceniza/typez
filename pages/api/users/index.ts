@@ -20,6 +20,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 mode: "insensitive",
               },
             },
+            include: {
+              gameresults: { orderBy: { timestamp: "desc" } },
+            },
           });
           res.status(200).json(user);
           res.end();
