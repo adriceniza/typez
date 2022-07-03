@@ -13,8 +13,6 @@ export default function Terminal(props: ITerminal) {
     const inputElement = useRef(null);
 
     const handleInput = (e: any) => {
-        const fake_input = document.getElementById("fake_input");
-        const fake_input_before = fake_input?.getAttribute('data-before')
         if (e.key === 'Enter') {
             if (e.target.value.length !== '') {
                 let command = e.target.value
