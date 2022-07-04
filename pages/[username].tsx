@@ -9,7 +9,7 @@ import styles from "../styles/Profile.module.css";
 import ModalTerminal from "../components/Terminal/modalTerminal";
 import Layout from "@components/Layout";
 import IGameRecord from "@interfaces/IGameRecord";
-import { getWpmRecord } from "@services/gamerecords.service";
+import { getAverageWPM, getWpmRecord } from "@services/gamerecords.service";
 export default function username() {
   const router = useRouter();
   const [user, setUser] = useState<IUser>();
@@ -19,13 +19,14 @@ export default function username() {
   });
   const [levelProgress, setLevelProgress] = useState(0);
   const [WpmRecord, setWpmRecord] = useState(0);
+  const [avg, setAvg] = useState(0)
 
   const fetchUser = () => {
     let username = router.asPath.slice(1);
     getUserFromUsername(username)
       .then((res) => {
         let response = res as any;
-        setUser(response?.data);
+        setUser(response);
       })
       .catch((err) => {
         console.log(`Error : ${err}`);
@@ -37,10 +38,16 @@ export default function username() {
     setTimeout(() => {
       setLevelProgress(user?.exp as number);
     }, 1);
-    getWpmRecord(user?.id as string).then((res) => {
-      let response = res as any;
-      setWpmRecord(response?.data?.WPMAverage);
-    });
+    const getAvg = async () => {
+      const avg = await getAverageWPM(user?.username as string)
+      setAvg(avg)
+    }
+    const getWpmRec = async () => {
+      const wpm_record = await getWpmRecord(user?.username as string);
+      setWpmRecord(wpm_record)
+    }
+    getAvg()
+    getWpmRec();
   }, [user]);
 
   useEffect(() => {
@@ -72,7 +79,7 @@ export default function username() {
             <div className={styles.section}>
               <div className={styles.subsection}>
                 <div className={styles.subtitle}>Average wpm</div>
-                <div className={styles.text_content}>{56}</div>
+                <div className={styles.text_content}>{avg}</div>
               </div>
               <div className={styles.subsection}>
                 <div className={styles.subtitle}>Wpm record</div>
@@ -85,6 +92,12 @@ export default function username() {
             </div>
             <div className={styles.section}>
               <div className={styles.title}>Records</div>
+              <select onChange={(e) => { console.log(e) }} className={styles.filter_by} id="filter_by">
+                <option value="date">Date</option>
+                <option value="date">Wpm</option>
+                <option value="date">Exp</option>
+
+              </select>
               <ul className={styles.gameresults}>
                 {user?.gameresults.map((gr: IGameRecord) => {
                   return (
