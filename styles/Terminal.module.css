@@ -38,7 +38,7 @@
     margin-left: 20px;
     letter-spacing: 0.05em;
     line-height: 1.3em;
-    text-align: start;
+    text-align: flex-start;
 }
 
 .lines>p>a {

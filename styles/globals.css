@@ -21,6 +21,12 @@ body {
   overflow-x: hidden;
 }
 
+ul {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
+}
+
 .admin {
   color: var(--typez_blue) !important;
   text-shadow: 0 0 6px var(--typez_blue) !important;
@@ -148,4 +154,26 @@ progress[value] {
 ::-webkit-scrollbar-thumb {
   background-color: var(--typez_green__08);
   border-radius: 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: var(--secondary_bg_color);
+  padding: 5px 26px;
+  border: none;
+  color: rgb(192, 190, 190);
+  font-weight: bolder;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0 0 10px 10px;
+}
+
+select:focus {
+  outline: none;
+}
+
+select::-ms-expand {
+  display: none;
 }
