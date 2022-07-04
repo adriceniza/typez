@@ -3,7 +3,7 @@ import Terminal_ from "./Terminal_";
 import styles from "@styles/ModalTerminal.module.css";
 
 
-export default function ModalTerminal() {
+export default function ModalTerminal(props: any) {
   let temp_show = false
   const [show, setShow] = useState(temp_show)
   const [hidden, setHidden] = useState(true)
@@ -15,11 +15,15 @@ export default function ModalTerminal() {
         setHidden(false)
         setTimeout(() => {
           setShow(true)
+          props.setModal && (props.setModalShow(temp_show))
+
         }, 50)
       } else {
         setShow(false)
         setTimeout(() => {
           setHidden(true)
+          props.setModal && (props.setModalShow(temp_show))
+
         }, 300)
       }
     }
@@ -32,7 +36,7 @@ export default function ModalTerminal() {
   return (
     <>
 
-      <div data-show={show} data-hidden={hidden} className={`${styles.modalTerminal}`}>
+      <div id='modal_terminal' data-show={show} data-hidden={hidden} className={`${styles.modalTerminal}`}>
         <div
           className={styles.modalTerminal__screen}>
           <div className={styles.modalTerminal__commands}>
