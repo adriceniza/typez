@@ -38,7 +38,7 @@ const loopLines = (
       loopLines(lines, index + 1, time, isBanner);
     }, time);
   } else {
-    terminal.innerHTML += "<br/>";
+    if (terminal) terminal.innerHTML += "<br/>";
   }
 };
 
