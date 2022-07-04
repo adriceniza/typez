@@ -99,16 +99,140 @@
     transition: all 0.5s ease-in-out;
 }
 
-.stats {
+.stats_container {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    backdrop-filter: blur(2.1px);
+    -webkit-backdrop-filter: blur(2.1px);
 }
 
-.stats>* {
-    margin: 5em;
+.stats_container[data-show='true'] {
+    display: flex;
+}
+
+.stats_container[data-show='false'] {
+    display: none;
+}
+
+.stats {
+    width: 450px;
+    height: 450px;
+    border-radius: 15px;
+    background-color: rgb(151, 151, 140);
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border: 4px solid rgba(122, 122, 118, 0.419);
+    transition: 0.3s;
+}
+
+.hidden_input {
+    opacity: 0;
+    position: absolute;
+    bottom: 0vh;
+}
+
+.stats>ul {
+    width: 95%;
+    height: 90%;
+    margin-top: 7px;
+    border-radius: 15px;
+    background-color: var(--bg);
+    border: 4px solid var(--secondary_bg_color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.stats>ul>li {
+    flex: 45%;
+    height: 45%;
+    background-color: var(--typez_green__08);
+    margin: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 30px;
+    font-weight: bolder;
+    color: var(--bg);
+}
+
+.stats>ul>li::after {
+    content: attr(data-content);
+    position: absolute;
+    top: 50%;
+}
+
+.stats>ul>li>span {
+    font-size: 22px;
+    position: absolute;
+    top: 35%;
+
+}
+
+.nextTest {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    background-color: var(--bg);
+    padding: 10px 25px;
+    border-radius: 6px;
+    color: var(--typez_green);
+    cursor: pointer;
+}
+
+.repeatTest {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    background-color: var(--bg);
+    padding: 10px 25px;
+    border-radius: 6px;
+    color: var(--typez_green);
+    cursor: pointer;
+}
+
+
+
+
+
+.stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 101.5%;
+    height: 96%;
+    border-radius: 20px;
+    margin-top: 32px;
+    background-color: rgb(83, 83, 76);
+    z-index: -1;
+}
+
+.stats>ul::after {
+    content: '·';
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+    font-weight: bolder;
+    font-size: 45px;
+    opacity: 0.5;
+    animation: screenOnOffLight 4s infinite alternate;
 }
 
 .wpm_counter {
@@ -167,6 +291,9 @@
     width: 100%;
     height: 100vh;
     transition: all 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -183,6 +310,46 @@
 .shake {
     animation: shake 0.1s infinite;
 }
+
+.time_duration_selector {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -60%);
+}
+
+.time_duration_selector>ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--secondary_bg_color);
+    justify-content: center;
+    align-items: center;
+    padding: 10px 3.5px;
+    border-radius: 10px;
+}
+
+.time_duration_selector>ul>li {
+    padding: 10px 25px;
+    margin: 0 5px;
+    background-color: var(--typez_green);
+    border-radius: 10px;
+    color: var(--bg);
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.time_duration_selector>ul>li:hover {
+    transform: scale(1.1);
+}
+
+.time_selected {
+    opacity: 1 !important;
+    transform: scale(1.05)
+}
+
 
 @keyframes shake {
     0% {
@@ -228,4 +395,27 @@
     100% {
         transform: scale(1.05) translate(1px, -2px) rotate(-1deg);
     }
+}
+
+@keyframes screenOnOffLight {
+    0% {
+        color: var(--typez_purple);
+    }
+
+    20% {
+        color: var(--secondary_bg_color);
+    }
+
+    50% {
+        color: var(--typez_purple);
+    }
+
+    70% {
+        color: var(--secondary_bg_color);
+    }
+
+    100% {
+        color: var(--typez_purple);
+    }
+
 }
