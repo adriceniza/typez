@@ -4,10 +4,13 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from "next-auth/react";
 import '../styles/globals.css'
 import { AnimatePresence } from 'framer-motion';
+import { Router } from 'next/router';
 function MyApp({ Component, pageProps }: AppProps) {
-
-
   const [location, setLocation] = useState('')
+  Router.events.on('routeChangeStart', () => { console.log('loading') })
+  Router.events.on('routeChangeComplete', () => { console.log('done') })
+  Router.events.on('routeChangeError', () => { console.log('done') })
+
   useEffect(() => {
     setLocation(window.location.pathname.slice(1))
   }, [Component])
