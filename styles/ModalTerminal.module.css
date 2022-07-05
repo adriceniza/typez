@@ -1,7 +1,7 @@
 .modalTerminal {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: rgba(20, 20, 20, 0.732);
     z-index: 9999999999999;
