@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useLevel from "../hooks/useLevel";
-import IUserSession from "../Interfaces/IUser";
-import IUser from "../Interfaces/IUser";
-import ILevel from "../Interfaces/ILevel";
-import { getUserFromUsername } from "../services/users.service";
-import styles from "../styles/Profile.module.css";
-import ModalTerminal from "../components/Terminal/modalTerminal";
+import IUserSession from "@interfaces/IUser";
+import IUser from "@interfaces/IUser";
+import ILevel from "@interfaces/ILevel";
+import { getUserFromUsername } from "@services/users.service";
+import styles from "@styles/Profile.module.css";
+import ModalTerminal from "@components/Terminal/modalTerminal";
 import Layout from "@components/Layout";
 import IGameRecord from "@interfaces/IGameRecord";
 import { getAverageWPM, getWpmRecord } from "@services/gamerecords.service";
@@ -75,6 +75,7 @@ export default function username() {
               >
                 {user?.exp}
               </progress>
+              <span className={styles.xp_label}>{user?.exp}</span>
             </div>
             <div className={styles.section}>
               <div className={styles.subsection}>
