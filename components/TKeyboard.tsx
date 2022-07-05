@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { keyboard } from '../constants'
-import ITKeyboard from '../Interfaces/ITKeyboard'
-import styles from '../styles/Loader.module.css'
+import ITKeyboard from '@interfaces/ITKeyboard'
+import styles from '@styles/Loader.module.css'
 
 export default function TKeyboard({
   fakeSearch,

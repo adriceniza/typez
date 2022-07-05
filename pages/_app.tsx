@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from "next-auth/react";
-import '../styles/globals.css'
+import '@styles/globals.css'
 import { AnimatePresence } from 'framer-motion';
 import { Router } from 'next/router';
 function MyApp({ Component, pageProps }: AppProps) {
