@@ -21,7 +21,8 @@
         "next-connect": "^0.12.2",
         "random-words": "^1.1.2",
         "react": "18.1.0",
-        "react-dom": "18.1.0"
+        "react-dom": "18.1.0",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@prisma/client": "^3.15.2",
@@ -31,6 +32,7 @@
         "@types/random-words": "^1.1.2",
         "@types/react": "18.0.10",
         "@types/react-dom": "18.0.5",
+        "@types/uuid": "^8.3.4",
         "eslint": "8.16.0",
         "eslint-config-next": "12.1.6",
         "prisma": "^3.15.2",
