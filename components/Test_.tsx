@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { delay } from '../constants'
 import rdmw from "random-words";
 import { gainExperience } from "@services/users.service";
 import { pushGameRecord } from "@services/gamerecords.service";
 import styles from "@styles/Test.module.css";
+import { useRouter } from 'next/router';
 
 export default function Test(props: any) {
+    const router = useRouter()
     const [showStats, setShowStats] = useState(false)
+    let testTime = 0
     let playing: boolean = false;
-    let testTime: number = 10;
     let timeElapsed: number = 0;
     let WORDS: string[] = []
     let NEXT_WORDS: string[] = []
@@ -114,6 +116,7 @@ export default function Test(props: any) {
         }, 100);
     };
     const generateTestUI = () => {
+        reset()
         WORDS = generateWords(10);
         printWords(WORDS, document.getElementById('current_words') as HTMLElement, true);
         NEXT_WORDS = generateWords(10);
@@ -149,7 +152,7 @@ export default function Test(props: any) {
         NEXT_WORDS = []
         word_index = 0;
         playing = false;
-        testTime = 30;
+        testTime = parseInt(window.location.search.split('=')[1] as string) || 30
         timeElapsed = 0;
         value = "";
         writedWords = [];
@@ -268,8 +271,8 @@ export default function Test(props: any) {
         } else if (abc.test(e.key)) {
             if (!playing) {
                 playing = true
-                countDown(10)
-            } console.log(WORDS)
+                countDown(testTime)
+            }
             if (value.length + 1 > WORDS[word_index].length) {
                 const word_div = document.getElementById(WORDS[word_index])!;
                 word_div.classList.add(styles.shake);
@@ -296,6 +299,7 @@ export default function Test(props: any) {
     }, [])
     return (
         <div className={styles.testContainer}>
+            <div className={styles.not_focus_advice}>Press a key or click here to focus</div>
             <div className={styles.terminal_test} id="terminal_test" tabIndex={1}>
                 <div className={styles.countdown} id="countdown"></div>
                 <div className={styles.countdown} id={'countdown'}></div>
@@ -312,10 +316,19 @@ export default function Test(props: any) {
                         <li id={'stats_mode'}><span>Mode</span></li>
                         <li id={'stats_exp'}><span>Exp</span></li>
                     </ul>
-                    <div onClick={() => { generateTestUI(); setShowStats(false) }} className={styles.nextTest}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                        </svg>
+                    <div className={styles.stats_toolbar}>
+                        <div onClick={() => { }} className={styles.repeatTest}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                                <path fillRule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                            </svg>
+                        </div>
+                        <div onClick={() => { generateTestUI(); setShowStats(false); document.getElementById('terminal_test')?.focus() }} className={styles.nextTest}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                            </svg>
+                        </div>
+
                     </div>
 
                 </div>
