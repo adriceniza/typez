@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Terminal_ from "./Terminal_";
+import Terminal_ from "@components/Terminal/Terminal_";
 import styles from "@styles/ModalTerminal.module.css";
 
 
@@ -28,7 +28,15 @@ export default function ModalTerminal(props: any) {
       }
     }
   }
+  const close = () => {
+    setShow(false)
+    setTimeout(() => {
+      setHidden(true)
+      props.setModal && (props.setModalShow(temp_show))
+      console.log(show, hidden)
 
+    }, 300)
+  }
   useEffect(() => {
     temp_show = false
     globalThis.addEventListener('keydown', keyDownHandleShow)
@@ -40,7 +48,7 @@ export default function ModalTerminal(props: any) {
         <div
           className={styles.modalTerminal__screen}>
           <div className={styles.modalTerminal__commands}>
-            <Terminal_ modal show={show} />
+            <Terminal_ modal show={show} close={() => { close() }} />
           </div>
         </div>
       </div>

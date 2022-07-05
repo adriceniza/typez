@@ -9,8 +9,8 @@ import ProfileCard from "@components/Ascii/profileAsciiCard";
 import {
   getAverageWPM,
   getLastGameRecord,
-} from "../../services/gamerecords.service";
-import asciiGameRecord from "../Ascii/asciiGameRecord";
+} from "@services/gamerecords.service";
+import asciiGameRecord from "@components/Ascii/asciiGameRecord";
 import IUserSession from "@interfaces/IUser";
 let value = "";
 
@@ -20,7 +20,8 @@ const clsInputValue: ITerminal_utils["clsInputValue"] = (setInput: any) => {
 };
 const commandHandler: ITerminal_utils["commandHandler"] = async (
   command: string,
-  router: NextRouter
+  router: NextRouter,
+  close?: () => void
 ) => {
   const user = await getSession().then(
     (session) => session?.user as IUserSession
@@ -32,6 +33,20 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
   ) {
     let username = command.slice(3);
     router.push(username);
+    close && close();
+    return true;
+  }
+  if (
+    command.substring(0, 5) === "test " &&
+    RegExp(/[0-9]/).test(command.slice(4))
+  ) {
+    let duration = command.slice(4).replace(" ", "");
+    const testTimes = ["15", "30", "60", "120"];
+    if (testTimes.includes(duration)) {
+      router.push(`test?duration=${duration}`);
+    } else {
+      pushLine("Test durations available : 15, 30, 60, 120");
+    }
     return true;
   }
   switch (command.toLowerCase()) {
@@ -79,7 +94,7 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
       }
       return true;
     case "test":
-      router.push("/test");
+      router.push(`test?duration=15`);
       return true;
     case "lr":
       if (user) {
@@ -92,7 +107,11 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
       }
     case "avg":
       if (user) {
-        loopLines([`Your average WPM is ${await getAverageWPM()}`], 0, 100);
+        loopLines(
+          [`Your average WPM is ${await getAverageWPM(user.username)}`],
+          0,
+          100
+        );
         return true;
       } else {
         pushLine("You are not logged in", true);
@@ -101,6 +120,7 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
     case "me":
       if (user) {
         router.push(user.username);
+        close && close();
       } else {
         pushLine("You are not logged in.", true);
       }

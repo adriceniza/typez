@@ -16,7 +16,7 @@ export default function Terminal(props: ITerminal) {
         if (e.key === 'Enter') {
             if (e.target.value.length !== '') {
                 let command = e.target.value
-                TERMINAL_UTILS.commandHandler(command, router)
+                TERMINAL_UTILS.commandHandler(command, router, props.close && props.close)
                 setInputValue('')
                 e.target.value = ''
             } else {
@@ -24,8 +24,6 @@ export default function Terminal(props: ITerminal) {
             }
         }
     }
-
-
     // Use effect to set focus when its visible (only used in modal terminal)
     useEffect(() => {
         if (inputElement['current']) {
