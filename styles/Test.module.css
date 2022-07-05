@@ -60,6 +60,7 @@
 .word_container {
     margin-left: 10px;
     font-size: 20px;
+    font-weight: 500;
     display: flex;
     flex-direction: row;
     width: min-content
@@ -130,7 +131,7 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     border: 4px solid rgba(122, 122, 118, 0.419);
     transition: 0.3s;
 }
@@ -185,30 +186,51 @@
 
 }
 
-.nextTest {
+.stats_toolbar {
     position: absolute;
-    bottom: 10%;
-    right: 5%;
-    background-color: var(--bg);
-    padding: 10px 25px;
-    border-radius: 6px;
-    color: var(--typez_green);
-    cursor: pointer;
+    bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 90%;
 }
 
-.repeatTest {
-    position: absolute;
-    bottom: 10%;
-    left: 5%;
-    background-color: var(--bg);
-    padding: 10px 25px;
-    border-radius: 6px;
-    color: var(--typez_green);
+.stats_toolbar>* {
+    color: var(--bg);
+    opacity: 0.8;
     cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.2s;
 }
 
+.stats_toolbar>*:hover {
+    transform: scale(1.1);
+}
 
+.test_toolbar {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -57%);
+    z-index: 4;
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.3;
+}
 
+.test_toolbar>* {
+    color: var(--typez_green);
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bolder;
+
+}
 
 
 .stats::before {
@@ -235,56 +257,6 @@
     animation: screenOnOffLight 4s infinite alternate;
 }
 
-.wpm_counter {
-    color: rgba(127, 255, 165, 0.416);
-    transform: scale(3);
-    z-index: 20;
-}
-
-.precision_container {
-    color: rgba(127, 255, 165, 0.416);
-    transform: scale(3);
-    z-index: 20;
-}
-
-.restart {
-    position: absolute;
-    top: 55%;
-    transform: scale(1.5);
-    color: rgb(132, 182, 132);
-}
-
-.restart>key {
-    transform: scale(1.6);
-    margin-right: 15px;
-}
-
-.goBack {
-    position: absolute;
-    bottom: 50px;
-    color: rgba(240, 248, 255, 0.147);
-}
-
-.goBack>a {
-    text-decoration: none;
-    color: rgba(154, 42, 179, 0.497);
-    font-weight: bold;
-    text-shadow: 0 0 4px rgba(192, 61, 225, 0.341);
-}
-
-.settings_container {
-    position: absolute;
-    bottom: 20px;
-    color: rgba(240, 248, 255, 0.147);
-}
-
-.keystrokes_container {
-    position: absolute;
-    bottom: 30%;
-    left: 50%;
-    transform: scale(1.7);
-    color: rgba(240, 248, 255, 0.147);
-}
 
 .terminal_test {
     background-color: rgb(33, 33, 33);
@@ -294,7 +266,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    z-index: 2;
+}
 
+.not_focus_advice {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: var(--typez_green__08);
+    z-index: 1;
+    cursor: pointer;
+}
+
+
+.terminal_test:focus {
+    background-color: rgb(33, 33, 33);
+    width: 100%;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
 }
 
 .countdown {
