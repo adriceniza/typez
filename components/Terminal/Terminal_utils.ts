@@ -43,7 +43,16 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
     let duration = command.slice(4).replace(" ", "");
     const testTimes = ["15", "30", "60", "120"];
     if (testTimes.includes(duration)) {
-      router.push(`test?duration=${duration}`);
+      const testRegex = new RegExp("^test*");
+      const location = window.location.pathname.slice(1);
+      if (testRegex.test(location)) {
+        pushLine(
+          "This change will take effect on the next test or if you restart"
+        );
+        router.push(`test?duration=${duration}`);
+      } else {
+        router.push(`test?duration=${duration}`);
+      }
     } else {
       pushLine("Test durations available : 15, 30, 60, 120");
     }
