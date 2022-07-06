@@ -15,14 +15,14 @@ export default function ModalTerminal(props: any) {
         setHidden(false)
         setTimeout(() => {
           setShow(true)
-          props.setModal && (props.setModalShow(temp_show))
+          props.setModalShow && (props.setModalShow(temp_show))
 
         }, 50)
       } else {
         setShow(false)
         setTimeout(() => {
           setHidden(true)
-          props.setModal && (props.setModalShow(temp_show))
+          props.setModalShow && (props.setModalShow(temp_show))
 
         }, 300)
       }
@@ -32,7 +32,7 @@ export default function ModalTerminal(props: any) {
     setShow(false)
     setTimeout(() => {
       setHidden(true)
-      props.setModal && (props.setModalShow(temp_show))
+      props.setModalShow && (props.setModalShow(temp_show))
       console.log(show, hidden)
 
     }, 300)
