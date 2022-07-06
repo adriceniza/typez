@@ -152,7 +152,7 @@ export default function Test(props: any) {
         NEXT_WORDS = []
         word_index = 0;
         playing = false;
-        testTime = parseInt(window.location.search.split('=')[1] as string) || 30
+        testTime = parseInt(window.location.search.split('?duration=')[1] as string) || 30
         timeElapsed = 0;
         value = "";
         writedWords = [];
@@ -287,6 +287,7 @@ export default function Test(props: any) {
         }
     }
     useEffect(() => {
+
         const test = document.getElementById('terminal_test');
         if (!props.modalShow) {
             test?.focus()
