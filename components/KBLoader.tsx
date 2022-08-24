@@ -25,7 +25,7 @@ export default function Loader() {
             enterKey?.classList.remove(styles.clickAnimation);
           }, 200);
           setTimeout(() => {
-            router.push(url)
+            //router.push(url)
           }, 100)
         }
 
