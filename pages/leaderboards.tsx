@@ -1,10 +1,12 @@
-import ModalTerminal from '@components/Terminal/modalTerminal'
 import React from 'react'
+// @ts-ignore
+import Layout from "@components/Layout.tsx";
 
 export default function leaderboards() {
     return (<>
-        <div>Leaderboards</div>
-        <ModalTerminal />
+        <Layout MT={true}>
+            <div>Leaderboards</div>
+        </Layout>
     </>
 
     )

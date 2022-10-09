@@ -7,7 +7,6 @@ import styles from "@styles/Test.module.css";
 import { useRouter } from 'next/router';
 
 export default function Test(props: any) {
-    const router = useRouter()
     const [showStats, setShowStats] = useState(false)
     let testTime = 0
     let playing: boolean = false;
@@ -82,7 +81,6 @@ export default function Test(props: any) {
         return Math.floor(characters / 5 / (testTime / 60));
     };
     const calcAccuracy = () => {
-        console.log(characters, mistakes);
         return Math.floor(((characters - mistakes) / characters) * 100);
     };
     const printWords = (
@@ -164,7 +162,7 @@ export default function Test(props: any) {
         document.getElementById('current_words')!.innerHTML = ''
         document.getElementById('next_words')!.innerHTML = ''
         document.getElementById('countdown')!.innerHTML = ''
-    }
+    };
     const finishTest = () => {
         document.getElementById('terminal_test')?.removeEventListener('keydown', handleChange)
         pushStats()
@@ -190,7 +188,7 @@ export default function Test(props: any) {
 
 
         setShowStats(true)
-    }
+    };
     const forceFinish = () => {
         document.getElementById('terminal_test')?.removeEventListener('keydown', handleChange)
         reset();
@@ -286,28 +284,29 @@ export default function Test(props: any) {
             lastKey = e.key;
         }
     }
-    useEffect(() => {
 
-        const test = document.getElementById('terminal_test');
-        if (!props.modalShow) {
-            test?.focus()
-        } else {
-            test?.blur()
-        }
-    }, [props.modalShow])
     useEffect(() => {
-        generateTestUI()
+        generateTestUI();
+        document.getElementById('terminal_test')?.focus()
+            window.addEventListener('resize',()=>{
+                try{
+                    moveCursor(document.getElementById(`${WORDS[word_index]}`)!)
+                }catch (error){
+
+                }
+            })
     }, [])
     return (
-        <div className={styles.testContainer}>
-            <div className={styles.not_focus_advice}>Press a key or click here to focus</div>
+           <div className={styles.testContainer}>
             <div className={styles.terminal_test} id="terminal_test" tabIndex={1}>
-                <div className={styles.countdown} id="countdown"></div>
-                <div className={styles.countdown} id={'countdown'}></div>
-                <div className={styles.last_words} id="last_words"></div>
-                <div className={styles.words_container} id="current_words"></div>
-                <div className={styles.next_words} id="next_words"></div>
-                <div className={styles.cursor} id="cursor"></div>
+                <div className={styles.countdown} id="countdown"/>
+                <div className={styles.countdown} id={'countdown'}/>
+                <div className={styles.words_container}>
+                    <div className={styles.last_words} id="last_words"/>
+                    <div className={styles.current_words} id="current_words"/>
+                    <div className={styles.next_words} id="next_words"/>
+                </div>
+                <div className={styles.cursor} id="cursor"/>
             </div>
             <div data-show={showStats} className={styles.stats_container}>
                 <div className={styles.stats}>
@@ -329,9 +328,7 @@ export default function Test(props: any) {
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                             </svg>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

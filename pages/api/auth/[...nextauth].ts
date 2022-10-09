@@ -1,12 +1,11 @@
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "../../../prisma/adapters/Github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextApiHandler } from "next";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../lib/prisma";
 
-const prisma = new PrismaClient();
-
+// @ts-ignore
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 
 const options = {

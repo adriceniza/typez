@@ -1,4 +1,5 @@
-import { loopLines, pushLine } from "./terminal_lines";
+// @ts-ignore
+import { loopLines, pushLine } from "@components/Terminal/Terminal_lines";
 import * as CONSTANTS from "../../constants";
 import ITerminal_utils from "@interfaces/ITerminal_utils";
 import styles from "@styles/Loader.module.css";
@@ -19,20 +20,21 @@ const clsInputValue: ITerminal_utils["clsInputValue"] = (setInput: any) => {
   setInput(value);
 };
 const commandHandler: ITerminal_utils["commandHandler"] = async (
+
   command: string,
   router: NextRouter,
   close?: () => void
+
 ) => {
   const user = await getSession().then(
     (session) => session?.user as IUserSession
   );
-
   if (
     command.substring(0, 3) === "cd " &&
     RegExp(/[a-zA-Z]/).test(command.slice(3))
   ) {
     let username = command.slice(3);
-    router.push(username);
+    await router.push(username);
     close && close();
     return true;
   }
@@ -46,12 +48,10 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
       const testRegex = new RegExp("^test*");
       const location = window.location.pathname.slice(1);
       if (testRegex.test(location)) {
-        pushLine(
-          "This change will take effect on the next test or if you restart"
-        );
-        router.push(`test?duration=${duration}`);
+        pushLine("This change will take effect on the next test or if you restart");
+        await router.push(`test?duration=${duration}`);
       } else {
-        router.push(`test?duration=${duration}`);
+        await router.push(`test?duration=${duration}`);
       }
     } else {
       pushLine("Test durations available : 15, 30, 60, 120");
@@ -60,22 +60,21 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
   }
   switch (command.toLowerCase()) {
     case "hello":
-      pushLine(`Hello ${user ? user.username : "guest"}.`);
+      pushLine(`tus muertos ${user ? user.username : "guest"}.`);
       return true;
     case "help":
       loopLines(
         user ? CONSTANTS.help_logged : CONSTANTS.help_not_logged,
         0,
-        100
+        50
       );
       return true;
     case "login":
       if (user) {
         pushLine(`You are already logged in as ${user.email}`, true);
       } else {
-        router.push("/login");
+        await router.push("/login");
       }
-
       return true;
     case "logout":
       if (!user) {
@@ -87,8 +86,9 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
       }
       return true;
     case "cls":
+    case "clear":
       document.getElementById("terminal_lines")!.innerHTML = "";
-      loopLines(CONSTANTS.banner, 0, 100, true);
+      loopLines(CONSTANTS.banner, 0, 50, true);
       return true;
     case "whoami":
       if (user) {
@@ -97,18 +97,18 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
           email: typeof user.email === "string" ? user.email : "",
           image: typeof user.image === "string" ? user.image : "",
         };
-        loopLines(ProfileCard(payload), 0, 100);
+        loopLines(ProfileCard(payload), 0, 50);
       } else {
         pushLine("You are not logged in", true);
       }
       return true;
     case "test":
-      router.push(`test?duration=15`);
+      await router.push(`test?duration=15`);
       return true;
     case "lr":
       if (user) {
         let lastRecord = await getLastGameRecord();
-        loopLines(asciiGameRecord(lastRecord), 0, 100);
+        loopLines(asciiGameRecord(lastRecord), 0, 50);
         return true;
       } else {
         pushLine("You are not logged in", true);
@@ -119,7 +119,7 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
         loopLines(
           [`Your average WPM is ${await getAverageWPM(user.username)}`],
           0,
-          100
+          50
         );
         return true;
       } else {
@@ -128,7 +128,7 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
       }
     case "me":
       if (user) {
-        router.push(user.username);
+        await router.push(user.username);
         close && close();
       } else {
         pushLine("You are not logged in.", true);
@@ -141,6 +141,10 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
         pushLine("You must be logged in to see config file.", true);
       }
       return true;
+    case "listpages":
+    case "lp":
+      loopLines(CONSTANTS.listpages, 0, 50)
+      break;
 
     default:
       {

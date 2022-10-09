@@ -8,13 +8,14 @@ const getAllUsernames = async () => {
 const getUserFromUsername = async (username: string) => {
   try {
     return (
-      await axios.get(
-        `api/users?mode=getUserFromUsername&username=${username?.toLowerCase()}`
-      )
+        await axios.get(
+            `api/users?mode=getUserFromUsername&username=${username?.toLowerCase()}`
+        )
     ).data;
   } catch (err) {
     throw new Error(err as string);
   }
+
 };
 
 const gainExperience = async (exp: number) => {

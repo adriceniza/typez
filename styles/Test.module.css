@@ -7,7 +7,7 @@
     align-items: center;
     z-index: 4;
     overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(58, 58, 58, 0.501);
+    box-shadow: 0 0 10px rgba(58, 58, 58, 0.501);
     user-select: none;
 }
 
@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 
-.words_container {
+.current_words {
     width: 100%;
     padding: 2em;
     display: flex;
@@ -51,9 +51,8 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    opacity: 0.8;
-    margin-top: 15vh;
-    transform: scale(0.8);
+    opacity: 1;
+    margin-top: 10vh;
     transition: all 0.5s ease-in-out;
 }
 
@@ -124,6 +123,8 @@
 
 .stats {
     width: 450px;
+    max-width: 85vw;
+    max-height: 45%;
     height: 450px;
     border-radius: 15px;
     background-color: rgb(151, 151, 140);
@@ -266,32 +267,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    z-index: 2;
-}
-
-.not_focus_advice {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    color: var(--typez_green__08);
-    z-index: 1;
-    cursor: pointer;
-}
-
-
-.terminal_test:focus {
-    background-color: rgb(33, 33, 33);
-    width: 100%;
-    height: 100vh;
-    transition: all 0.5s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 1;
+    z-index: 2;
 }
 
 .countdown {
@@ -346,73 +323,108 @@
     opacity: 1 !important;
     transform: scale(1.05)
 }
+.words_container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hidden_input{
+    transform: scale(0);
+    z-index: -1;
+    visibility: hidden;
+}
+@media(max-width: 850px){
+    .last_words,.current_words,.next_words{
+        display: flex;
+        position: relative;
+        flex: 1;
+        height: 100%;
+        width: 100%;
+        flex-wrap: wrap;
+        line-height: 2.5;
+        margin-top: 5% !important;
+        margin-bottom: 5% !important;
+        transform: scale(0.9);
+        padding: 0;
+        flex-grow: initial;
+        min-height: 15%;
+    }
+    .countdown {
+        top: 10% !important;
+    }
+
+}
+
 
 
 @keyframes shake {
-    0% {
-        transform: scale(1.05) translate(1px, 1px) rotate(0deg);
-    }
+0% {
+    transform: scale(1.05) translate(1px, 1px) rotate(0deg);
+}
 
-    10% {
-        transform: scale(1.05) translate(-1px, -2px) rotate(-1deg);
-    }
+10% {
+    transform: scale(1.05) translate(-1px, -2px) rotate(-1deg);
+}
 
-    20% {
-        transform: scale(1.05) translate(-3px, 0px) rotate(1deg);
-    }
+20% {
+    transform: scale(1.05) translate(-3px, 0px) rotate(1deg);
+}
 
-    30% {
-        transform: scale(1.05) translate(3px, 2px) rotate(0deg);
-    }
+30% {
+    transform: scale(1.05) translate(3px, 2px) rotate(0deg);
+}
 
-    40% {
-        transform: scale(1.05) translate(1px, -1px) rotate(1deg);
-    }
+40% {
+    transform: scale(1.05) translate(1px, -1px) rotate(1deg);
+}
 
-    50% {
-        transform: scale(1.05) translate(-1px, 2px) rotate(-1deg);
-    }
+50% {
+    transform: scale(1.05) translate(-1px, 2px) rotate(-1deg);
+}
 
-    60% {
-        transform: scale(1.05) translate(-3px, 1px) rotate(0deg);
-    }
+60% {
+    transform: scale(1.05) translate(-3px, 1px) rotate(0deg);
+}
 
-    70% {
-        transform: scale(1.05) translate(3px, 1px) rotate(-1deg);
-    }
+70% {
+    transform: scale(1.05) translate(3px, 1px) rotate(-1deg);
+}
 
-    80% {
-        transform: scale(1.05) translate(-1px, -1px) rotate(1deg);
-    }
+80% {
+    transform: scale(1.05) translate(-1px, -1px) rotate(1deg);
+}
 
-    90% {
-        transform: scale(1.05) translate(1px, 2px) rotate(0deg);
-    }
+90% {
+    transform: scale(1.05) translate(1px, 2px) rotate(0deg);
+}
 
-    100% {
-        transform: scale(1.05) translate(1px, -2px) rotate(-1deg);
-    }
+100% {
+    transform: scale(1.05) translate(1px, -2px) rotate(-1deg);
+}
 }
 
 @keyframes screenOnOffLight {
-    0% {
-        color: var(--typez_purple);
-    }
+0% {
+    color: var(--typez_purple);
+}
 
-    20% {
-        color: var(--secondary_bg_color);
-    }
+20% {
+    color: var(--secondary_bg_color);
+}
 
-    50% {
-        color: var(--typez_purple);
-    }
+50% {
+    color: var(--typez_purple);
+}
 
-    70% {
-        color: var(--secondary_bg_color);
-    }
+70% {
+    color: var(--secondary_bg_color);
+}
 
-    100% {
-        color: var(--typez_purple);
-    }
+100% {
+    color: var(--typez_purple);
+}
 
 }

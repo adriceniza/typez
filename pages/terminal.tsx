@@ -4,6 +4,6 @@ import Layout from '@components/Layout';
 export default function Terminal(): ReactElement<any, any> {
   return (
 
-    <Layout><Terminal_ /></Layout>
+    <Layout MT={false}><Terminal_ /></Layout>
   )
 }

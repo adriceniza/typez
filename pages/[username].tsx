@@ -11,28 +11,35 @@ import Layout from "@components/Layout";
 import IGameRecord from "@interfaces/IGameRecord";
 import { getAverageWPM, getWpmRecord } from "@services/gamerecords.service";
 export default function username() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [user, setUser] = useState<IUser>();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [level, setLevel] = useState<ILevel | undefined>({
     level: 0,
     level_max_exp: 1000,
   });
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [levelProgress, setLevelProgress] = useState(0);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [WpmRecord, setWpmRecord] = useState(0);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [avg, setAvg] = useState(0)
 
   const fetchUser = () => {
     let username = router.asPath.slice(1);
     getUserFromUsername(username)
       .then((res) => {
-        let response = res as any;
-        setUser(response);
+        if(res){
+          let response = res as any;
+          setUser(response);
+        }else{
+          router.push("/terminal");
+        }
       })
-      .catch((err) => {
-        console.log(`Error : ${err}`);
-        router.push("/terminal");
-      });
   };
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     user !== undefined && setLevel(useLevel(user as IUserSession));
     setTimeout(() => {
@@ -50,18 +57,19 @@ export default function username() {
     getWpmRec();
   }, [user]);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     fetchUser();
   }, [router]);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     fetchUser();
   }, []);
   return (
     user && (
       <>
-        <Layout>
-          <ModalTerminal />
+        <Layout MT>
           <div className={styles.container}>
             <div className={styles.header}>
               <h1 className={styles.name}>{user?.username}</h1>

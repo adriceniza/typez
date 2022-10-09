@@ -6,6 +6,9 @@
   --typez_purple_08: rgba(159, 23, 197, 0.616);
   --bg: rgb(33, 33, 33);
   --secondary_bg_color: rgb(45, 45, 45);
+  --primary_menu_button: rgb(63, 63, 63);
+  --primary_menu_button_hover: rgb(131, 131, 131);
+
 }
 
 .App {
@@ -72,7 +75,7 @@ input[type="checkbox"]::before {
   right: 50%;
   margin-top: 0.1px;
   transition: all 0.2s ease-in-out;
-  box-shadow: inset 1em 1em var(--form-control-color);
+  box-shadow: inset 1em 1em var(--primary_menu_button_hover);
 }
 
 input[type="checkbox"]:checked::before {
@@ -85,7 +88,7 @@ input[type="checkbox"]:checked::before {
   right: 0;
   margin-top: 0.1px;
   transition: all 0.2s ease-in-out;
-  box-shadow: inset 1em 1em var(--form-control-color);
+  box-shadow: inset 1em 1em var(--primary_menu_button_hover);
 }
 
 input[type="range"] {
