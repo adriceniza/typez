@@ -1,22 +1,21 @@
 import axios from "axios";
 import { getSession } from "next-auth/react";
-import { resolve } from "path";
 import IUserSession from "../Interfaces/IUser";
 const getAllUsernames = async () => {
   const users = await axios.get("api/users?mode=allUsernames");
   return await users.data;
 };
 const getUserFromUsername = async (username: string) => {
-  let response;
-  await axios
-    .get(`api/users?mode=getUserFromUsername&username=${username}`)
-    .then((res) => {
-      response = res;
-    })
-    .catch((err) => {
-      throw new Error(err);
-    });
-  return response;
+  try {
+    return (
+        await axios.get(
+            `api/users?mode=getUserFromUsername&username=${username?.toLowerCase()}`
+        )
+    ).data;
+  } catch (err) {
+    throw new Error(err as string);
+  }
+
 };
 
 const gainExperience = async (exp: number) => {

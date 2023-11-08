@@ -1,0 +1,44 @@
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.menu{
+    position: absolute;
+    width: 90%;
+    align-items: center;
+    z-index: 10;
+}
+.left_menu_items{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}.right_menu_items{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.menu_item{
+    margin-right: 10px;
+    font-size: 1em;
+    gap: 0.25em;
+    padding: 0.5em;
+    color: var(--primary_menu_button);
+    z-index: 1;
+
+    cursor:pointer;
+}
+
+.menu_item > svg{
+    font-size: inherit;
+    transform: scale(1.1);
+}
+.menu_item.settings > svg{
+    transform: scale(0.9);
+}
+.menu_item:hover{
+    color: var(--primary_menu_button_hover);
+}

@@ -4,5 +4,5 @@ export default interface IGameRecord {
   gameId: String;
   WPMAverage: number;
   expEarned: number;
-  timestamp?: Date;
+  timestamp?: String;
 }

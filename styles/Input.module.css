@@ -1,13 +1,14 @@
 .new_line {
     position: relative;
-    width: 100%;
+    width: 95%;
+    align-self: center;
     display: flex;
     flex-direction: row;
-    pointer-events: none;
+    cursor:default;
+
 }
 
 .input {
-    cursor: text;
     margin-left: 20px;
     margin-top: 5px;
     max-width: 100%;
@@ -19,6 +20,7 @@
     font-family: cursor, monospace;
     background-color: transparent;
     border-bottom: none;
+    cursor:default;
 }
 
 .input::before {
@@ -27,7 +29,15 @@
     margin-right: 5px;
 }
 
-.input::after {
+.input[data-suggested-value]::after{
+    content: attr(data-suggested-value)'';
+    color: var(--bg);
+    background-color: var(--typez_purple_08);
+    animation: none;
+    box-shadow: 0 0 0 transparent;
+    padding-right: 2px;
+}
+.input::after{
     content: '.';
     margin-left: 1px;
     color: var(--typez_purple);
@@ -35,7 +45,6 @@
     animation: blink 1s infinite;
     box-shadow: 0 0 5px var(--typez_purple);
 }
-
 .input_inactive::after {
     opacity: 1 !important;
     animation: none !important;

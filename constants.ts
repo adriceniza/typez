@@ -5,13 +5,24 @@ const banner = [
   "       &#92; &#92;_&#92;  &#92;/&#92;_____&#92;  &#92; &#92;_&#92;    &#92; &#92;_____&#92;   /&#92;_____&#92; ",
   "        &#92;/_/   &#92;/_____/   &#92;/_/     &#92;/_____/   &#92;/_____/ ",
   " ",
-  "Welcome to typez, use <a>'help'</a> to see the available commands",
+  "Welcome, type <a>help</a> to see the available commands",
+  " ",
+  `Version ${process.env.TYPEZ_VERSION}`
 ];
+
+const listpages = [
+    "Available pages",
+    " - terminal",
+    " - test",
+    " - login",
+    " - leaderboards",
+    " - keyboard",
+]
 
 const space = "&nbsp&nbsp";
 
 const delay = async (ms: number) => {
-  return new Promise((res: Function, rej) => {
+  return new Promise((res: Function, req) => {
     setTimeout(() => res(), ms);
   });
 };
@@ -24,7 +35,8 @@ const keyboard = [
 ];
 const help_logged = [
   "<a>help</a> : Show all available commands.",
-  "<a>cd</a> : Command to change current location.",
+  "<a>cd</a> : Command to change current page.",
+  "<a>listpages</a> or <a>lp</a> : List all available pages.",
   "<a>me</a> : Go to your profile page.",
   "<a>whoami</a> : Show your account information.",
   "<a>test</a> : Quick typing test.",
@@ -32,14 +44,30 @@ const help_logged = [
   "<a>avg</a> : Show your average typing speed.",
   "<a>config</a> : See config file.",
   "<a>logout</a> : Logout from the server.",
-  "<a>cls</a> : Clear the terminal.",
+  "<a>clear</a> or <a>cls</a> : Clear the terminal.",
 ];
 const help_not_logged = [
-  "<a>help</a> : Show all available commands.",
-  "<a>cd</a> : Command to change current location.",
-  "<a>login</a> : Login to the server.",
-  "<a>test</a> : Quick typing test.",
-  "<a>config</a> : See config file.",
-  "<a>cls</a> : Clear the terminal.",
+    "<a>help</a> : Show all available commands.",
+    "<a>cd</a> : Command to change current location.",
+    "<a>listpages</a> or <a>lp</a> : List all available pages.",
+    "<a>login</a> : Login to the server.",
+    "<a>test</a> : Quick typing test.",
+    "<a>config</a> : See config file.",
+    "<a>clear</a> or <a>cls</a> : Clear the terminal.",
 ];
-export { banner, space, delay, keyboard, help_logged, help_not_logged };
+const available_commands =[
+    "help",
+    "cd",
+    "listpages",
+    "me",
+    "whoami",
+    "test",
+    "lr",
+    "avg",
+    "config",
+    "logout",
+    "clear",
+    "lp",
+    "cls"
+]
+export { banner, space, keyboard, help_logged, help_not_logged, listpages, available_commands, delay };

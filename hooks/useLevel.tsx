@@ -1,4 +1,4 @@
-import IUser from "../Interfaces/IUser"
+import IUser from "@interfaces/IUser"
 
 export default function useLevel(user: IUser) {
     const exp = user?.exp

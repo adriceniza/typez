@@ -9,7 +9,7 @@ export default function Loader() {
   const [fakeSearch, setFakeSearch] = React.useState('')
 
   const animation = (url: string) => {
-    const arr_url = Array.from(`www.typez.com/${url}`)
+    const arr_url = Array.from(`typez.dev/${url}`)
     arr_url.forEach((key, i) => {
       key = key.toString();
       setTimeout(() => {
