@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import Terminal_ from '@components/Terminal/Terminal_';
+import Terminal_ from '@components/Terminal/Terminal';
 import Layout from '@components/Layout';
 export default function Terminal(): ReactElement<any, any> {
   return (

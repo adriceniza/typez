@@ -141,8 +141,7 @@ const commandHandler: ITerminal_utils["commandHandler"] = async (
         pushLine("You must be logged in to see config file.", true);
       }
       return true;
-    case "listpages":
-    case "lp":
+    case "ls":
       loopLines(CONSTANTS.listpages, 0, 50)
       break;
 

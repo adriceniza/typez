@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Terminal_ from "@components/Terminal/Terminal_";
+import Terminal_ from "@components/Terminal/Terminal";
 import styles from "@styles/ModalTerminal.module.css";
 
 
