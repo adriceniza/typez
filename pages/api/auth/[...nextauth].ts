@@ -10,10 +10,10 @@ const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 
 const options = {
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
+    // GithubProvider({
+    //   clientId: process.env.GITHUB_ID,
+    //   clientSecret: process.env.GITHUB_SECRET,
+    // }),
     GoogleProvider({
       clientId:
         process.env.GOOGLE_ID !== undefined ? process.env.GOOGLE_ID : "",
